@@ -9,7 +9,8 @@ from sklearn.model_selection import train_test_split
 data = 'train.csv'
 pd_data = pd.read_csv(data)
 pd_data = pd_data.dropna(axis=1)
-features = ["LotArea", "OverallQual" , "OverallCond", 
+# Using only numerical features
+features = ["LotArea", "OverallQual" , "OverallCond",
                    "YearBuilt", "YearRemodAdd"]
 y = pd_data['SalePrice']
 X = pd_data[features]
@@ -44,7 +45,7 @@ sp_pred = rf_model.predict(val_X)
 #Get the best_leaf_node
 
 def get_mae(max_leaf_nodes, train_X, val_X, train_y, val_y):
-    rf_model_op = RandomForestRegressor(max_leaf_nodes=max_leaf_nodes, 
+    rf_model_op = RandomForestRegressor(max_leaf_nodes=max_leaf_nodes,
     random_state=0)
     rf_model_op.fit(train_X, train_y)
     pred = rf_model_op.predict(val_X)
